@@ -18,6 +18,7 @@ export const noteSlice = createSlice({
       state.total = state.total + 1;
     },
     removeNote: (state, action: PayloadAction<string>) => {
+      localStorage.setItem("notes", JSON.stringify(state.notes.filter((note) => note.id !== action.payload)));
       state.notes = state.notes.filter(item => item.id !== action.payload);
     },
   },
