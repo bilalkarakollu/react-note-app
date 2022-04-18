@@ -23,6 +23,7 @@ import { addNote } from "../../store/slices/noteSlice";
 import { useFormik } from "formik";
 import validationSchema from "./validations";
 import {useAppDispatch} from "../../store/hooks";
+import { toast } from "react-toastify";
 
 function NewNote() {
     const dispatch = useAppDispatch();
@@ -42,7 +43,7 @@ function NewNote() {
     "pink.400",
   ];
 
-  const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
+  const { handleSubmit, handleChange, handleBlur, values, errors, touched, setValues } =
     useFormik({
       initialValues: {
         title: "",
@@ -55,6 +56,20 @@ function NewNote() {
             color: color,
         };
         dispatch(addNote(newNote));
+        setValues({
+            title: "",
+            content: "",
+        });
+        setColor("red.400");
+        toast.success('Note added!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
         onClose();
       },
       validationSchema,

@@ -3,6 +3,7 @@ import { Note as INote } from "../../types/note";
 import { CloseIcon } from "@chakra-ui/icons";
 import { useAppDispatch } from "../../store/hooks";
 import { removeNote } from  '../../store/slices/noteSlice';
+import { toast } from "react-toastify";
 interface NoteProps {
   note: INote;
 }
@@ -10,6 +11,20 @@ interface NoteProps {
 const Note = (props: NoteProps) => {
     const dispatch = useAppDispatch();
   const { note } = props;
+
+  const handledelete = () => {
+    dispatch(removeNote(note.id));
+    toast.success('Note deleted!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+  };
+
   return (
     <Box bg={note.color} p={2} minH={200} color={"white"} borderRadius={20}>
       <Flex
@@ -21,7 +36,7 @@ const Note = (props: NoteProps) => {
         <Box fontSize={25} fontWeight={500}>
           {note.title}
         </Box>
-        <Box cursor={'pointer'} onClick={() => dispatch(removeNote(note.id))}>
+        <Box cursor={'pointer'} onClick={handledelete}>
           <CloseIcon/>
         </Box>
       </Flex>
