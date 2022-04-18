@@ -1,5 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState, AppThunk } from "../index";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { NotesState, Note } from "../../types/note";
 import { v4 as uuidv4 } from "uuid";
 
@@ -23,6 +22,8 @@ export const noteSlice = createSlice({
     },
   },
 });
+
+export const selectNote = (state: NotesState) => state.notes;
 
 export const {addNote, removeNote} = noteSlice.actions;
 
