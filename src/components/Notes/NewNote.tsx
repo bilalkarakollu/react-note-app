@@ -89,7 +89,7 @@ function NewNote() {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Create your account</ModalHeader>
+          <ModalHeader>Create new note</ModalHeader>
           <ModalCloseButton />
           <form onSubmit={handleSubmit}>
             <ModalBody pb={6}>
@@ -140,11 +140,11 @@ function NewNote() {
               </FormControl>
             </ModalBody>
             <ModalFooter>
-              <Button type={"submit"} colorScheme="blue" mr={3}>
-                Save
-              </Button>
               <Button type="button" onClick={onClose}>
                 Cancel
+              </Button>
+              <Button type={"submit"} colorScheme="yellow" ml={3}>
+                Save
               </Button>
             </ModalFooter>
           </form>

@@ -26,7 +26,7 @@ const Note = (props: NoteProps) => {
   };
 
   return (
-    <Box bg={note.color} p={2} minH={200} color={"white"} borderRadius={20}>
+    <Box bg={note.color} p={2} minH={300} color={"white"} borderRadius={20}>
       <Flex
         justifyContent="space-between"
         alignItems="center"
