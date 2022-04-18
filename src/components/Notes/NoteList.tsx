@@ -10,7 +10,7 @@ const NoteList = (props: SearchProps) => {
   const { notes } = useAppSelector((state) => state.notes);
 
   return (
-    <SimpleGrid columns={[1,1,1,3]} spacing={10} p={4}>
+    <SimpleGrid columns={[1, 1, 1, 3]} spacing={10} p={4}>
       {notes
         .filter((note) =>
           note.title.toLowerCase().includes(search.toLowerCase())

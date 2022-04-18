@@ -3,9 +3,12 @@ import NewNote from "./NewNote";
 import Search from "./Search";
 import { Flex } from "@chakra-ui/react";
 import NoteList from "./NoteList";
+import { useAppSelector } from "../../store/hooks";
 
 const Notes = () => {
   const [search, setSearch] = useState("");
+
+  const { total } = useAppSelector((state) => state.notes);
 
   return (
     <>
@@ -23,7 +26,7 @@ const Notes = () => {
         <Search search={search} setSearch={setSearch} />
         <NewNote />
       </Flex>
-      <NoteList search={search} />
+      {total > 0 ? <NoteList search={search} /> : <Flex justifyContent={'center'} fontSize={18}>No notes found</Flex>}
     </>
   );
 };
