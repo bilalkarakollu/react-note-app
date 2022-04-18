@@ -4,8 +4,8 @@ import Notes from "./components/Notes";
 
 const App = () => {
   return (
-    <Container maxW={"container.lg"}>
-      <Box bg={'white'} minH={'100vh'}>
+    <Container maxW={"container.lg"} height={'100vh'} pt={5} alignItems={'center'}>
+      <Box bg={'white'} minH={'95vh'} borderRadius={10}>
         <Notes/>
       </Box>
     </Container>

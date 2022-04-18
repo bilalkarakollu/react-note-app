@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { NotesState, Note } from "../../types/note";
-import { v4 as uuidv4 } from "uuid";
+
 
 const initialState: NotesState = {
-  notes: [],
+  notes: localStorage.getItem("notes") ? JSON.parse(localStorage.getItem("notes") || "[]") : [],
   total: 0,
   status: "idle",
 };
@@ -13,8 +13,8 @@ export const noteSlice = createSlice({
   initialState,
   reducers: {
     addNote: (state, action: PayloadAction<Note>) => {
-      const newData: Note = { ...action.payload, id: uuidv4() };
-      state.notes.push(newData);
+      localStorage.setItem("notes", JSON.stringify([...state.notes, action.payload]));
+      state.notes.push(action.payload);
       state.total = state.total + 1;
     },
     removeNote: (state, action: PayloadAction<string>) => {
@@ -22,8 +22,6 @@ export const noteSlice = createSlice({
     },
   },
 });
-
-export const selectNote = (state: NotesState) => state.notes;
 
 export const {addNote, removeNote} = noteSlice.actions;
 
